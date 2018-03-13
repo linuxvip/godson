@@ -3,5 +3,6 @@
 *.so
 *.egg
 *.egg-info
+*.sqlite3
 build
 .idea
