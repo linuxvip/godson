@@ -18,11 +18,18 @@ from django.contrib import admin
 from django.conf import settings
 import views
 
+from cmdb.urls import router as cmdb_router
+
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
+
     url(r'^cmdb/', include('cmdb.urls')),
+    # include cmdb.urls
+    url(r'^api/', include(cmdb_router.urls)),
+
     url(r'^navi/', include('navi.urls')),
     url(r'^config/', include('config.urls')),
 ]

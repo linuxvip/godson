@@ -90,17 +90,18 @@ def pages(post_objects, request):
 @token_verify() # 效验token的装饰器
 def collect(request):
     asset_info = json.loads(request.body)
+    print asset_info
     if request.method == 'POST':
-        vendor = asset_info['vendor']
+        #vendor = asset_info['vendor']
         # group = asset_info['group']
         disk = asset_info['disk']
-        cpu_model = asset_info['cpu_model']
+        #cpu_model = asset_info['cpu_model']
         cpu_num = asset_info['cpu_num']
         memory = asset_info['memory']
         sn = asset_info['sn']
         osver = asset_info['osver']
         hostname = asset_info['hostname']
-        ip = asset_info['ip']
+        ip = asset_info['privateIps']
         # asset_type = ""
         # status = ""
         try:
@@ -113,12 +114,12 @@ def collect(request):
         host.hostname = hostname
         # host.group = group
         host.cpu_num = int(cpu_num)
-        host.cpu_model = cpu_model
-        host.memory = int(memory)
+        #host.cpu_model = cpu_model
+        host.memory = float(memory)
         host.sn = sn
         host.disk = disk
         host.os = osver
-        host.vendor = vendor
+        #host.vendor = vendor
         host.ip = ip
         host.save()
         return HttpResponse("Post asset data to server successfully!")

@@ -3,6 +3,14 @@
 from django.conf.urls import url, include
 from cmdb import api, idc, asset, group
 
+from rest_framework import routers
+from .jiekou import IdcViewSet, HostViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'idc', IdcViewSet)
+router.register(r'host', HostViewSet)
+
 
 urlpatterns = [
     url(r'asset/$', asset.asset, name='cmdb'),
