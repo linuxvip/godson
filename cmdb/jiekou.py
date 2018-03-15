@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # coding: utf-8
 
-import django_filters
 from rest_framework import viewsets, filters, permissions
 from rest_framework.exceptions import APIException
 
@@ -34,8 +33,9 @@ class IdcViewSet(viewsets.ModelViewSet):
     """
     queryset = Idc.objects.all()
     serializer_class = IdcSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-    # filter_backends = (IdcnameFilter,)
+    permission_classes = (permissions.IsAuthenticated,) # 权限检查，支持7种权限
+    filter_backends = (filters.SearchFilter,)           # rest-framework 提供的默认的filters
+    search_fields = ('name', 'tel')                     # 指定搜索的域,http://example.com/api/idc/?search=Azure
 
 
 class HostViewSet(viewsets.ModelViewSet):
