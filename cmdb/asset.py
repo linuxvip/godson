@@ -21,7 +21,7 @@ sys.setdefaultencoding('utf8')
 @permission_verify()
 def asset(request):
     temp_name = "cmdb/cmdb-header.html"
-    webssh_domain = get_dir("webssh_domain")
+    # webssh_domain = get_dir("webssh_domain")
     asset_find = []
     idc_info = Idc.objects.all()
     host_list = Host.objects.all()
@@ -62,13 +62,13 @@ def asset(request):
             Q(ip__contains=keyword) |
             Q(other_ip__contains=keyword) |
             Q(os__contains=keyword) |
-            Q(vendor__contains=keyword) |
-            Q(cpu_model__contains=keyword) |
             Q(cpu_num__contains=keyword) |
             Q(memory__contains=keyword) |
             Q(disk__contains=keyword) |
             Q(sn__contains=keyword) |
             Q(position__contains=keyword) |
+            Q(principal__contains=keyword) |
+            Q(application__contains=keyword) |
             Q(memo__contains=keyword))
     if export:
         response = create_asset_excel(export, asset_id_all)
@@ -91,8 +91,8 @@ def create_asset_excel(export, asset_id_all):
             response['Content-Disposition'] = "attachment; filename="+file_name
             writer = csv.writer(response)
             writer.writerow([str2gb(u'主机名'), str2gb(u'IP地址'), str2gb(u'其它IP'), str2gb(u'主机组'),
-                             str2gb(u'资产编号'), str2gb(u'设备类型'), str2gb(u'设备状态'), str2gb(u'操作系统'),
-                             str2gb(u'设备厂商'), str2gb(u'CPU型号'), str2gb(u'CPU核数'), str2gb(u'内存大小'),
+                             str2gb(u'设备类型'), str2gb(u'设备状态'), str2gb(u'操作系统'),
+                             str2gb(u'CPU型号'), str2gb(u'CPU核数'), str2gb(u'内存大小'),
                              str2gb(u'硬盘信息'), str2gb(u'SN号码'), str2gb(u'所在机房'), str2gb(u'所在位置'),
                              str2gb(u'备注信息')])
             for h in asset_find:
@@ -106,9 +106,9 @@ def create_asset_excel(export, asset_id_all):
                     a_status = ASSET_STATUS[at_as-1][1]
                 else:
                     a_status = ""
-                writer.writerow([str2gb(h.hostname), h.ip, h.other_ip, str2gb(h.group), str2gb(h.asset_no),
-                                 str2gb(a_type), str2gb(a_status), str2gb(h.os), str2gb(h.vendor),
-                                 str2gb(h.cpu_model), str2gb(h.cpu_num), str2gb(h.memory), str2gb(h.disk),
+                writer.writerow([str2gb(h.hostname), h.ip, h.other_ip, str2gb(h.group),
+                                 str2gb(a_type), str2gb(a_status), str2gb(h.os),
+                                 str2gb(h.cpu_num), str2gb(h.memory), str2gb(h.disk),
                                  str2gb(h.sn), str2gb(h.idc), str2gb(h.position), str2gb(h.memo)])
             return response
 
@@ -116,11 +116,11 @@ def create_asset_excel(export, asset_id_all):
         host = Host.objects.all()
         response = HttpResponse(content_type='text/csv')
         now = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M')
-        file_name = 'adminset_cmdb_' + now + '.csv'
+        file_name = 'godson_cmdb_' + now + '.csv'
         response['Content-Disposition'] = "attachment; filename=" + file_name
         writer = csv.writer(response)
-        writer.writerow([str2gb('主机名'), str2gb('IP地址'), str2gb('其它IP'), str2gb('主机组'), str2gb('资产编号'),
-                         str2gb('设备类型'), str2gb('设备状态'), str2gb('操作系统'), str2gb('设备厂商'), str2gb('CPU型号'),
+        writer.writerow([str2gb('主机名'), str2gb('IP地址'), str2gb('其它IP'), str2gb('主机组'),
+                         str2gb('设备类型'), str2gb('设备状态'), str2gb('操作系统'),
                          str2gb('CPU核数'), str2gb('内存大小'), str2gb('硬盘信息'), str2gb('SN号码'), str2gb('所在机房'),
                          str2gb('所在位置'), str2gb('备注信息')])
         for h in host:
@@ -134,8 +134,8 @@ def create_asset_excel(export, asset_id_all):
                 a_status = ASSET_STATUS[at_as-1][1]
             else:
                 a_status = ""
-            writer.writerow([str2gb(h.hostname), h.ip, h.other_ip, str2gb(h.group), str2gb(h.asset_no), str2gb(a_type),
-                             str2gb(a_status), str2gb(h.os), str2gb(h.vendor), str2gb(h.cpu_model), str2gb(h.cpu_num),
+            writer.writerow([str2gb(h.hostname), h.ip, h.other_ip, str2gb(h.group), str2gb(a_type),
+                             str2gb(a_status), str2gb(h.os), str2gb(h.cpu_num),
                              str2gb(h.memory), str2gb(h.disk), str2gb(h.sn), str2gb(h.idc), str2gb(h.position),
                              str2gb(h.memo)])
         return response
