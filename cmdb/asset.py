@@ -87,7 +87,7 @@ def create_asset_excel(export, asset_id_all):
                     asset_find.append(asset_item)
             response = HttpResponse(content_type='text/csv')
             now = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M')
-            file_name = 'adminset_cmdb_' + now + '.csv'
+            file_name = 'godson_cmdb_' + now + '.csv'
             response['Content-Disposition'] = "attachment; filename="+file_name
             writer = csv.writer(response)
             writer.writerow([str2gb(u'主机名'), str2gb(u'IP地址'), str2gb(u'其它IP'), str2gb(u'主机组'),
