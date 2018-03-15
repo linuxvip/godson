@@ -8,8 +8,8 @@ from .jiekou import IdcViewSet, HostViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'idc', IdcViewSet)
-router.register(r'host', HostViewSet)
+router.register(r'idcs', IdcViewSet)
+router.register(r'hosts', HostViewSet)
 
 
 urlpatterns = [
