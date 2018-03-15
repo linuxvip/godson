@@ -22,13 +22,15 @@ class AssetForm(forms.ModelForm):
             'status': Select(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'os': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'vendor': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
-            'cpu_model': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
+            # 'cpu_model': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'cpu_num': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'memory': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'disk': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'sn': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'idc': Select(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'position': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;', 'placeholder': u'物理机写位置，虚机写宿主'}),
+            'application': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'机器所部署的应用'}),
+            'principal': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'memo': Textarea(attrs={'class': 'form-control', 'style': 'width:530px;'}),
         }
 

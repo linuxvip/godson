@@ -1,3 +1,4 @@
 Django==1.11.11
 pytz==2018.3
 djangorestframework
+django_filter
