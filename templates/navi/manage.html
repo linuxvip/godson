@@ -41,6 +41,7 @@
                                     <th>名称</th>
                                     <th>注释</th>
                                     <th>URL</th>
+                                    <th>备注信息</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,7 @@
                                         <td><a href="#"><li style="list-style-type:none" onclick="return tanchu(this.value)" value="{{ navi.id }}">{{ navi.name }}</li></a></td>
                                         <td>{{ navi.description }}</td>
                                         <td>{{ navi.url }}</td>
+                                        <td>{{ navi.momo }}</td>
                                     </tr>
                                 {% endfor %}
                                 {% else %}
