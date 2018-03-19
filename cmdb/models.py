@@ -72,7 +72,8 @@ class Host(models.Model):
     sn = models.CharField(u"SN号 码", max_length=60, blank=True)
     idc = models.ForeignKey(Idc, verbose_name=u"所在机房", on_delete=models.SET_NULL, null=True, blank=True)
     position = models.CharField(u"所在位置", max_length=100, null=True, blank=True)
-    application = models.CharField(u"用途", max_length=100, null=True, blank=True)
+    usage = models.CharField(u"用途", max_length=100, null=True, blank=True)
+    application = models.CharField(u"软件", max_length=100, null=True, blank=True)
     principal = models.CharField(u"负责人", max_length=50, null=True, blank=True)
     memo = models.TextField(u"备注信息", max_length=200, null=True, blank=True)
 

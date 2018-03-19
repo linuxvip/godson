@@ -29,7 +29,8 @@ class AssetForm(forms.ModelForm):
             'sn': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'idc': Select(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'position': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;', 'placeholder': u'物理机写位置，虚机写宿主'}),
-            'application': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'机器所部署的应用'}),
+            'application': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'机器所部署的软件'}),
+            'usage': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'机器用途'}),
             'principal': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'memo': Textarea(attrs={'class': 'form-control', 'style': 'width:530px;'}),
         }

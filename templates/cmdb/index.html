@@ -134,6 +134,7 @@
                             <th>CPU</th>
                             <th>内存(G)</th>
                             <th>机房</th>
+                            <th>软件</th>
                             <th>用途</th>
                             <th>负责人</th>
                             <th class="text-center">功能</th>
@@ -150,6 +151,7 @@
                                         <td>{{ host.memory }}</td>
                                         <td>{{ host.idc }}</td>
                                         <td>{{ host.application }}</td>
+                                        <td>{{ host.usage }}</td>
                                         <td>{{ host.principal }}</td>
                                         <td class="text-center" data-editable='false'>
 {#                                        <a class="btn btn-sm btn-info" target="_blank" href="http://{{ host.hostname }}.{{ webssh_domain }}:2222/ssh/host/{{ host.ip }}" class="btn btn-xs btn-info">WebSSH</a>#}
