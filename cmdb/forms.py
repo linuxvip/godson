@@ -33,6 +33,8 @@ class AssetForm(forms.ModelForm):
             'usage': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'机器用途'}),
             'principal': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;'}),
             'memo': Textarea(attrs={'class': 'form-control', 'style': 'width:530px;'}),
+            'jira': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'申请jira'}),
+            'add_time': TextInput(attrs={'class': 'form-control', 'style': 'width:530px;','placeholder': u'添加时间 yyyy-mm-dd'}),
         }
 
 

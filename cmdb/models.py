@@ -76,6 +76,8 @@ class Host(models.Model):
     application = models.CharField(u"软件", max_length=100, null=True, blank=True)
     principal = models.CharField(u"负责人", max_length=50, null=True, blank=True)
     memo = models.TextField(u"备注信息", max_length=200, null=True, blank=True)
+    jira = models.CharField(u"申请jira", max_length=200, null=True, blank=True)
+    add_time = models.DateTimeField(u"添加时间", max_length=200, null=True, blank=True)
 
     def __unicode__(self):
         return self.hostname
