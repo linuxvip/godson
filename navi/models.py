@@ -14,3 +14,7 @@ class navi(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = u'导航管理'
+        verbose_name_plural = verbose_name

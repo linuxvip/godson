@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block self_head_css_js %}
+    <script src="/static/layer/layer.js"></script>
+    <script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+      $(function () {
+          $('#dataform').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true
+          });
+      });
+    </script>
+{#    <script>#}
+{#        function del(id,name) {#}
+{#        var dialog = bootbox.confirm({#}
+{#            title: "<a class='text-danger'>"+ 'delete server'  + name +"</a>",#}
+{#            message: 'Are you sure to delete server'  + name + '?',#}
+{#            buttons: {#}
+{#                confirm: {#}
+{#                    label: 'delete',#}
+{#                    className: 'btn-danger'#}
+{#                },#}
+{#                cancel: {#}
+{#                    label: 'cancel',#}
+{#                    className: 'btn-success'#}
+{#                }#}
+{#            },#}
+{#            callback: function (result) {#}
+{#                if (result){#}
+{#                    $.ajax({#}
+{#                        type: "DELETE",#}
+{#                        url: '{% url 'domain:domain-index' %}' + id + '/',#}
+{#                        dataType: "json",#}
+{#                        success: function (data) {#}
+{#                                toastr["success"]("Delete server" +name +"success!");#}
+{#                                setTimeout(function () {#}
+{#                                    location.reload();#}
+{#                                },2000);#}
+{##}
+{#                        },#}
+{#                        failure: function (errMsg) {#}
+{#                            toastr["error"](errMsg);#}
+{#                        },#}
+{#                        error: function(XMLHttpRequest, textStatus, errorThrown) {#}
+{#                            $.each(JSON.parse(XMLHttpRequest.responseText), function(key, value){#}
+{#                                $.each(value, function(index, value) {#}
+{#                                    toastr["error"]("Please check field"+key + "'error:"+ value);#}
+{#                                });#}
+{#                            });#}
+{#                        }#}
+{#                    });#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#    }#}
+{#    </script>#}
+
+
+    <script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    $(document).ready(function () {
+        $(".delete").click(function () {
+            if(confirm('确定删除吗？')){
+                $.post(this.href, function (data) {
+                    if (data.results == "ok") {
+                        window.location.reload();
+                    } else {
+                        alert("sth wrong");
+                    }
+                });
+            }
+            return false;
+        })
+    })
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form action="" method="post">
+                {% csrf_token %}
+            <div class="box">
+                <div class="box-header">
+                  <div class="btn-group">
+						 <a href="{% url 'domain:domain-add' %}">
+                             <li class="btn btn-success" style="width: 60pt;font-size: medium" >
+                                 <b>添加</b>
+                             </li>
+                         </a>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <table class="table table-striped table-bordered" id="dataform">
+                      <thead>
+                        <tr>
+                            <th>域名名称</th>
+                            <th>解析IP</th>
+                            <th>添加位置</th>
+                            <th>使用环境</th>
+                            <th>用途</th>
+                            <th>功能</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% if domains %}
+                          {% for domain in domains %}
+                              <tr>
+                                  <td>
+                                      <a href="#"><li style="list-style-type:none" value="{{ domain.id }}">{{ domain.domain_name }}</li></a>
+                                  </td>
+                                  <td>{{ domain.domain_name }}</td>
+                                  <td>{{ domain.ip }}</td>
+                                  <td>{{ domain.add_area }}</td>
+                                  <td>{{ domain.usage }}</td>
+                                  <td class="text-center" data-editable='false'>
+                                      <a class="edit btn btn-sm btn-info" name="edit" href="{% url 'domain:domain-edit' domain.id %}">编辑</a>
+                                      <a class="delete btn btn-sm btn-danger" name="delete"  href="{% url 'domain:domain-delete' domain.id %}">删除</a>
+                                  </td>
+                              </tr>
+                          {% endfor %}
+                      {% else %}
+                          <p>No Item are available.</p>
+                      {% endif %}
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+{% endblock %}

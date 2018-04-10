@@ -42,8 +42,9 @@
 {#        <li id="appconf"><a href="{% url 'appconf' %}"><i class="fa fa-outdent"></i> <span>应用管理</span></a></li>#}
 {#        <li id="monitor"><a href="{% url 'monitor' %}"><i class="fa fa-television"></i> <span>监控平台</span></a></li>#}
 {#        <li><a href="#"><i class="fa fa-file-text-o"></i> <span>文件管理</span></a></li>#}
-        <li id="accounts"><a href="{% url 'user_list' %}"><i class="fa fa-users"></i> <span>用户管理</span></a></li>
-        <li id="config"><a href="{% url 'config' %}"><i class="fa fa fa-cog"></i> <span>系统配置</span></a></li>
+          <li id="accounts"><a href="{% url 'user_list' %}"><i class="fa fa-users"></i> <span>用户管理</span></a></li>
+          <li id="domain"><a href="{% url 'domain:domain-index' %}"><i class="fa fa-th-list"></i> <span>域名管理</span></a></li>
+          <li id="config"><a href="{% url 'config' %}"><i class="fa fa fa-cog"></i> <span>系统配置</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

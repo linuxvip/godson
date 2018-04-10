@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'cmdb',
     'navi',
+    'domain',
     'rest_framework',
 ]
 

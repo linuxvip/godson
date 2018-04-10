@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^api/', include(cmdb_router.urls)),
 
     url(r'^navi/', include('navi.urls')),
+    url(r'^domain/', include('domain.urls', namespace="domain", app_name='domain')),
     url(r'^config/', include('config.urls')),
 ]
