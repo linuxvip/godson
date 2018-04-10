@@ -125,9 +125,9 @@
                                   <td>
                                       <a href="#"><li style="list-style-type:none" value="{{ domain.id }}">{{ domain.domain_name }}</li></a>
                                   </td>
-                                  <td>{{ domain.domain_name }}</td>
                                   <td>{{ domain.ip }}</td>
                                   <td>{{ domain.add_area }}</td>
+                                  <td>{{ domain.env }}</td>
                                   <td>{{ domain.usage }}</td>
                                   <td class="text-center" data-editable='false'>
                                       <a class="edit btn btn-sm btn-info" name="edit" href="{% url 'domain:domain-edit' domain.id %}">编辑</a>
